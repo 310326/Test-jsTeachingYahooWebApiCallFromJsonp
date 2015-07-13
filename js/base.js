@@ -1,7 +1,8 @@
 function ShowAddress() {
-	var appid = '';
+	var appid = 'your-appid';
 	var query = document.getElementById('query').value;
-	var url = "http://map.yahooapis.jp/LocalSearchService/V1/LocalSearch?appid=" + appid + "&p=" + encodeURI( query ) + "&o=json&callback=showResult";
+	var url = "http://search.olp.yahooapis.jp/OpenLocalPlatform/V1/localSearch?appid=" + appid + "&query=" + encodeURI( query ) + "&callback=ShowResult";
+//	var url = "http://placeinfo.olp.yahooapis.jp/V1/get?appid=" + appid + "&query=" + encodeURI(query) + "&callback=ShowResult";
 	CallJSONP(url);
 }
 
@@ -14,6 +15,7 @@ function CallJSONP(url) {
 }
 
 function ShowResult(result) {
+	alert();
 	if(result.Count > 0)
 	{
 		alert( result.Count + "件の結果が見つかりました。¥n" + result.Item[0].Title + "の住所は" + result.Item[0].Address + "です。");
