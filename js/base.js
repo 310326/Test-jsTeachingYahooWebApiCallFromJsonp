@@ -1,12 +1,12 @@
 function ShowAddress() {
 	var appid = 'Your-AppId';
 	var query = document.getElementById('query').value;
-	var url = "http://search.olp.yahooapis.jp/OpenLocalPlatform/V1/localSearch?appid=" + appid + "&query=" + encodeURI( query ) + "&output=json&callback=ShowResult";
+	var url = "http://search.olp.yahooapis.jp/OpenLocalPlatform/V1/localSearch?appid=" + appid + "&cid=d8a23e9e64a4c817227ab09858bc1330" + "&query=" + encodeURI( query ) + "&output=json&callback=ShowResult";
 	CallJSONP(url);
 }
 
 function CallJSONP(url) {
-	Message(url);
+	Message("JSONP response: " + url);
 	var target = document.createElement('script');
 	target.charset = 'utf-8';
 	target.src = url;
@@ -14,9 +14,9 @@ function CallJSONP(url) {
 }
 
 function ShowResult(result) {
-	if(result.Count > 0)
+	if(result.ResultInfo.Count > 0)
 	{
-		Message(result.Count + "件の結果が見つかりました。¥n" + result.Item[0].Title + "の住所は" + result.Item[0].Address + "です。");
+		Message(result.ResultInfo.Count + "件の結果が見つかりました。\n" + result.Feature[0].Name + "の住所は" + result.Feature[0].Property.Address + "です。");
 	}
 	else
 	{
